@@ -4,7 +4,6 @@ import AllBlogs from "../pages/AllBlogs";
 import Show from "../pages/Show";
 import New from "../admin/New";
 import About from "../pages/About";
-import AdminPortal from "../admin/AdminPortal";
 
 export default class Header extends Component {
     render() {
@@ -17,6 +16,9 @@ export default class Header extends Component {
                     </div>
                     <div className="header item">
                         <Link to="/">Home</Link>
+                    </div>
+                    <div className="header item">
+                        <Link to="/new">Create Post</Link>
                     </div>
                     <div className="header item">
                         <Link to="/about">About</Link>

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Sandwich, Route, Link } from "react-router-dom";
 import New from "./admin/New";
-import AdminPortal from "./admin/AdminPortal";
 import Header from "./includes/Header";
 import Footer from "./includes/Footer";
 import Index from "./pages/Index";
@@ -34,7 +33,6 @@ export default class Layout extends Component {
                             <Route  path="/" component={Index} />
                             <Route  path="/new" component={New} />
                             <Route  path="/about" component={About} />
-                            <Route  path="/admin" component={AdminPortal} />
                         </article>
                     </section>
                     <Footer />
