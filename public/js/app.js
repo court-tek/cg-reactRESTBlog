@@ -15624,7 +15624,34 @@ var New = function (_Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "form",
-                    { onSubmit: this.onSubmit },
+                    { className: "ui form", onSubmit: this.onSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Title"
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Image"
+                        )
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Body"
+                        )
+                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
                         type: "text",
                         name: "title",

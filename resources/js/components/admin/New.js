@@ -36,7 +36,16 @@ export default class New extends Component {
         return (
             <div className="ui main text container segment">
                 <div className="ui huge header">Create New Post</div>
-                <form onSubmit={this.onSubmit}>
+                <form className="ui form" onSubmit={this.onSubmit}>
+                    <div className="field">
+                      <label>Title</label>
+                    </div>
+                    <div className="field">
+                      <label>Image</label>
+                    </div>
+                    <div className="field">
+                      <label>Body</label>
+                    </div>
                     <input
                         type="text"
                         name="title"
