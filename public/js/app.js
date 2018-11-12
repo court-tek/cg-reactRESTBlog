@@ -15632,7 +15632,14 @@ var New = function (_Component) {
                             "label",
                             null,
                             "Title"
-                        )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                            type: "text",
+                            name: "title",
+                            placeholder: "title",
+                            value: this.state.title,
+                            onChange: this.onFieldChange
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
@@ -15641,7 +15648,14 @@ var New = function (_Component) {
                             "label",
                             null,
                             "Image"
-                        )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                            type: "text",
+                            name: "image",
+                            placeholder: "image",
+                            value: this.state.image,
+                            onChange: this.onFieldChange
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
@@ -15650,30 +15664,16 @@ var New = function (_Component) {
                             "label",
                             null,
                             "Body"
-                        )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("textarea", {
+                            type: "text",
+                            name: "body",
+                            placeholder: "blog post goes here",
+                            value: this.state.body,
+                            onChange: this.onFieldChange
+                        })
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-                        type: "text",
-                        name: "title",
-                        placeholder: "title",
-                        value: this.state.title,
-                        onChange: this.onFieldChange
-                    }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-                        type: "text",
-                        name: "image",
-                        placeholder: "image",
-                        value: this.state.image,
-                        onChange: this.onFieldChange
-                    }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
-                        type: "text",
-                        name: "body",
-                        placeholder: "blog post goes here",
-                        value: this.state.body,
-                        onChange: this.onFieldChange
-                    }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "submit" })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "ui violet big basic button", type: "submit" })
                 )
             );
         }

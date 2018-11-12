@@ -38,36 +38,36 @@ export default class New extends Component {
                 <div className="ui huge header">Create New Post</div>
                 <form className="ui form" onSubmit={this.onSubmit}>
                     <div className="field">
-                      <label>Title</label>
+                        <label>Title</label>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="title"
+                            value={this.state.title}
+                            onChange={this.onFieldChange}
+                        />
                     </div>
                     <div className="field">
-                      <label>Image</label>
+                        <label>Image</label>
+                        <input
+                            type="text"
+                            name="image"
+                            placeholder="image"
+                            value={this.state.image}
+                            onChange={this.onFieldChange}
+                        />
                     </div>
                     <div className="field">
-                      <label>Body</label>
+                        <label>Body</label>
+                        <textarea
+                            type="text"
+                            name="body"
+                            placeholder="blog post goes here"
+                            value={this.state.body}
+                            onChange={this.onFieldChange}
+                        />
                     </div>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="title"
-                        value={this.state.title}
-                        onChange={this.onFieldChange}
-                    />
-                    <input
-                        type="text"
-                        name="image"
-                        placeholder="image"
-                        value={this.state.image}
-                        onChange={this.onFieldChange}
-                    />
-                    <input
-                        type="text"
-                        name="body"
-                        placeholder="blog post goes here"
-                        value={this.state.body}
-                        onChange={this.onFieldChange}
-                    />
-                    <input type="submit" />
+                    <input className="ui violet big basic button" type="submit" />
                 </form>
             </div>
         );
