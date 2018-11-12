@@ -15555,6 +15555,8 @@ var generatePath = function generatePath() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(6);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -15567,26 +15569,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var New = function (_Component) {
     _inherits(New, _Component);
 
-    function New() {
+    function New(props) {
         _classCallCheck(this, New);
 
-        var _this = _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).call(this));
+        var _this = _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).call(this, props));
 
         _this.state = {
-            blogs: []
+            title: "",
+            image: "",
+            body: ""
         };
+        _this.onFieldChange = _this.onFieldChange.bind(_this);
+        _this.onSubmit = _this.onSubmit.bind(_this);
         return _this;
     }
 
     _createClass(New, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var _this2 = this;
+        key: "onFieldChange",
+        value: function onFieldChange(e) {
+            this.setState(_defineProperty({}, event.target.name, e.target.value));
+            console.log(e.target.value);
+        }
+    }, {
+        key: "onSubmit",
+        value: function onSubmit(e) {
+            e.preventDefault();
+            var history = this.props.history;
 
-            console.log("hello");
-            axios.get("api/blogs/store").then(function (res) {
+            var post = {
+                title: this.state.title,
+                image: this.state.image,
+                body: this.state.body
+            };
+            axios.post("api/blogs/store", post).then(function (res) {
                 console.log(res);
-                _this2.setState({ blogs: res.data });
+                history.push("/");
             });
         }
     }, {
@@ -15607,10 +15624,28 @@ var New = function (_Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "form",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "", placeholder: "title" }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "", placeholder: "image" }),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", name: "", placeholder: "blog post goes here" }),
+                    { onSubmit: this.onSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        type: "text",
+                        name: "title",
+                        placeholder: "title",
+                        value: this.state.title,
+                        onChange: this.onFieldChange
+                    }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        type: "text",
+                        name: "image",
+                        placeholder: "image",
+                        value: this.state.image,
+                        onChange: this.onFieldChange
+                    }),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        type: "text",
+                        name: "body",
+                        placeholder: "blog post goes here",
+                        value: this.state.body,
+                        onChange: this.onFieldChange
+                    }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "submit" })
                 )
             );
@@ -38248,7 +38283,9 @@ var Layout = function (_Component) {
                             "article",
                             { style: contentBlock, className: "content" },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: "/", component: __WEBPACK_IMPORTED_MODULE_6__pages_Index__["a" /* default */] }),
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: "/new", component: __WEBPACK_IMPORTED_MODULE_3__admin_New__["a" /* default */] }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: "/new", render: function render(props) {
+                                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__admin_New__["a" /* default */], props);
+                                } }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__["d" /* Route */], { path: "/about", component: __WEBPACK_IMPORTED_MODULE_7__pages_About__["a" /* default */] })
                         )
                     ),

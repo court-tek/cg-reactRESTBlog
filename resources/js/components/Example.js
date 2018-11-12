@@ -31,7 +31,7 @@ export default class Layout extends Component {
                         <Header />
                         <article style={contentBlock} className="content">
                             <Route  path="/" component={Index} />
-                            <Route  path="/new" component={New} />
+                            <Route  path="/new" render={(props) =>(<New {...props} />  )}/>
                             <Route  path="/about" component={About} />
                         </article>
                     </section>
