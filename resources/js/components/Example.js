@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Sandwich, Route, Link } from "react-router-dom";
+import AdminPortal from "./admin/AdminPortal";
 import New from "./admin/New";
 import Header from "./includes/Header";
 import Footer from "./includes/Footer";
@@ -18,11 +19,6 @@ export default class Layout extends Component {
 
       };
     }
-
-    goodbyeHeader() {
-
-    }
-
     render() {
         return (
             <Sandwich>
@@ -33,6 +29,7 @@ export default class Layout extends Component {
                             <Route  path="/" component={Index} />
                             <Route  path="/new" render={(props) =>(<New {...props} />  )}/>
                             <Route  path="/about" component={About} />
+                            <Route  path="/admin" component={AdminPortal} />
                         </article>
                     </section>
                     <Footer />

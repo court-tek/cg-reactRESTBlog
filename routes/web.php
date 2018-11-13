@@ -13,3 +13,4 @@
 
 Route::view('/{path?}', 'index');
 Route::view('/{path?}/{blog?}', 'index');
+Route::view('/{path?}/{id?}/{blog?}', 'index');

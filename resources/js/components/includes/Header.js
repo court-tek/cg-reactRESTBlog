@@ -5,9 +5,7 @@ import Show from "../pages/Show";
 import New from "../admin/New";
 import About from "../pages/About";
 
-export default class Header extends Component {
-    render() {
-        return (
+const Header = () => (
             <div className="ui fixed inverted menu">
                 <div className="ui container">
                     <div className="header item">
@@ -25,6 +23,5 @@ export default class Header extends Component {
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        )
+export default Header;
