@@ -5,16 +5,34 @@ export default class AllPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: "",
-            image: "",
-            body: ""
+            blogs: []
         };
-      }
+    }
+
+    componentDidMount() {
+        console.log("hello");
+        axios.get("api/blogs/").then(res => {
+            console.log(res);
+            this.setState({ blogs: res.data });
+        });
+    }
+
+    mappingIt() {
+        return this.state.blogs.map(blog => {
+          return (
+            <div key={blog.id} className="ui top attached">
+              <div className="ui items">
+                <NavLink to={`/admin/${blog.id}`}>{blog.title}</NavLink>
+              </div>
+            </div>
+          );
+        });
+    }
+
     render() {
-        const { match, location, history } = this.props;
         return (
             <div className="ui main text container segment">
-              <h1 className="header">This Component Will Display A list of All Post</h1>
+              {this.mappingIt()}
             </div>
         );
     }

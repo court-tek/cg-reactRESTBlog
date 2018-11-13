@@ -67,7 +67,10 @@ export default class New extends Component {
                             onChange={this.onFieldChange}
                         />
                     </div>
-                    <input className="ui violet big basic button" type="submit" />
+                    <input
+                        className="ui violet big basic button"
+                        type="submit"
+                    />
                 </form>
             </div>
         );

@@ -19,7 +19,6 @@ export default class AllBlogs extends Component {
     }
 
     mappeData() {
-
         return this.state.blogs.map(blog => {
             let newDate = new Date(blog.created_at);
             let blogDate = newDate.toDateString();
