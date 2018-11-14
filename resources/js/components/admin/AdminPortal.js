@@ -14,7 +14,6 @@ export default class AdminPortal extends Component {
             <Sandwich>
                 <div>
                     <NavLink style={linkStyle} to="/admin">Admin Home</NavLink>
-                    <NavLink style={linkStyle} to="/admin/1">Display Page</NavLink>
                     <Route exact path="/admin" component={AllPost} />
                     <Route exact path="/admin/:id" component={Display} />
                     <Route exact path="/admin/:id/edit" component={EditPage} />

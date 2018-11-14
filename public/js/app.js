@@ -62580,11 +62580,6 @@ var AdminPortal = function (_Component) {
                         { style: linkStyle, to: "/admin" },
                         "Admin Home"
                     ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-                        { style: linkStyle, to: "/admin/1" },
-                        "Display Page"
-                    ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Route */], { exact: true, path: "/admin", component: __WEBPACK_IMPORTED_MODULE_2__AllPost__["a" /* default */] }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Route */], { exact: true, path: "/admin/:id", component: __WEBPACK_IMPORTED_MODULE_3__Display__["a" /* default */] }),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["d" /* Route */], { exact: true, path: "/admin/:id/edit", component: __WEBPACK_IMPORTED_MODULE_4__EditPage__["a" /* default */] })
