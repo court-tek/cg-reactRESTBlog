@@ -18,4 +18,4 @@ Route::post('blogs/store', 'BlogsController@store');
 Route::get('blogs/{id}/show', 'BlogsController@show');
 Route::put('blogs/{id}/update', 'BlogsController@update');
 Route::get('blogs/{id}/edit', 'BlogsController@edit');
-Route::get('blogs/{id}/delete', 'BlogsController@desroy');
+Route::delete('blogs/{id}/delete', 'BlogsController@destroy');

@@ -15601,7 +15601,7 @@ var New = function (_Component) {
                 image: this.state.image,
                 body: this.state.body
             };
-            axios.post("api/blogs/store", post).then(function (res) {
+            axios.post("/api/blogs/store", post).then(function (res) {
                 console.log(res);
                 history.push("/admin");
             });
@@ -62697,97 +62697,112 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var EditDestroy = function (_Component) {
-    _inherits(EditDestroy, _Component);
+  _inherits(EditDestroy, _Component);
 
-    function EditDestroy(props) {
-        _classCallCheck(this, EditDestroy);
+  function EditDestroy(props) {
+    _classCallCheck(this, EditDestroy);
 
-        var _this = _possibleConstructorReturn(this, (EditDestroy.__proto__ || Object.getPrototypeOf(EditDestroy)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (EditDestroy.__proto__ || Object.getPrototypeOf(EditDestroy)).call(this, props));
 
-        _this.state = {
-            singlePost: []
-        };
-        return _this;
+    _this.state = {
+      singlePost: [],
+      blogId: _this.props.match.params.id
+    };
+    _this.handleDelete = _this.handleDelete.bind(_this);
+    return _this;
+  }
+
+  _createClass(EditDestroy, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var blogId = this.state.blogId;
+
+      console.log(blogId);
+      axios.get("/api/blogs/" + blogId + "/show").then(function (res) {
+        console.log(res);
+        console.log(res.data);
+        var singlePost = res.data;
+        _this2.setState({ singlePost: singlePost });
+      });
     }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      var history = this.props.history;
+      var blogId = this.state.blogId;
 
-    _createClass(EditDestroy, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            var _this2 = this;
+      e.preventDefault();
+      axios.delete("/api/blogs/" + blogId + "/delete").then(function (res) {
+        console.log(res);
+        console.log('I am the Syntax Error DELETE');
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props = this.props,
+          match = _props.match,
+          location = _props.location,
+          history = _props.history;
+      var singlePost = this.state.singlePost;
 
-            var blogId = this.props.match.params.id;
-            console.log(blogId);
-            axios.get("/api/blogs/" + blogId + "/show").then(function (res) {
-                console.log(res);
-                console.log(res.data);
-                var singlePost = res.data;
-                _this2.setState({ singlePost: singlePost });
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var _props = this.props,
-                match = _props.match,
-                location = _props.location,
-                history = _props.history;
-            var singlePost = this.state.singlePost;
+      var newDate = new Date(singlePost.created_at);
+      var blogDate = newDate.toDateString();
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        "div",
+        { className: "ui main text container segment" },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { className: "ui huge header" },
+          singlePost.title
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "section",
+          { className: "ui top attached" },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "item" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
+              className: "ui centered rounded image",
+              src: "" + singlePost.image
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "content" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "span",
+                null,
+                blogDate
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { className: "description" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "p",
+                null,
+                singlePost.body
+              )
+            )
+          )
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
+          { to: "/admin/" + singlePost.id + "/edit", className: "ui green basic button" },
+          "Edit Post"
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "button",
+          { onClick: this.handleDelete, className: "ui red basic button" },
+          "Delete Post"
+        )
+      );
+    }
+  }]);
 
-            var newDate = new Date(singlePost.created_at);
-            var blogDate = newDate.toDateString();
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "ui main text container segment" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    { className: "ui huge header" },
-                    singlePost.title
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "section",
-                    { className: "ui top attached" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "item" },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("img", {
-                            className: "ui centered rounded image",
-                            src: "" + singlePost.image
-                        }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "div",
-                            { className: "content" },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "span",
-                                null,
-                                blogDate
-                            )
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            "div",
-                            { className: "description" },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                "p",
-                                null,
-                                singlePost.body
-                            )
-                        )
-                    )
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-                    { to: "/admin/" + singlePost.id + "/edit", className: "ui green basic button" },
-                    "Edit Post"
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "button",
-                    { className: "ui red basic button" },
-                    "Delete Post"
-                )
-            );
-        }
-    }]);
-
-    return EditDestroy;
+  return EditDestroy;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (EditDestroy);
@@ -62801,6 +62816,8 @@ var EditDestroy = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(3);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -62825,9 +62842,7 @@ var EditPage = function (_Component) {
             body: ""
         };
         _this.handleSubmit = _this.handleSubmit.bind(_this);
-        _this.onTitleChange = _this.onTitleChange.bind(_this);
-        _this.onImageChange = _this.onImageChange.bind(_this);
-        _this.onBodyChange = _this.onBodyChange.bind(_this);
+        _this.onFieldChange = _this.onFieldChange.bind(_this);
         return _this;
     }
 
@@ -62850,21 +62865,9 @@ var EditPage = function (_Component) {
             });
         }
     }, {
-        key: "onTitleChange",
-        value: function onTitleChange(e) {
-            this.setState({ title: e.target.value });
-            console.log(e.target.value);
-        }
-    }, {
-        key: "onImageChange",
-        value: function onImageChange(e) {
-            this.setState({ image: e.target.value });
-            console.log(e.target.value);
-        }
-    }, {
-        key: "onBodyChange",
-        value: function onBodyChange(e) {
-            this.setState({ body: e.target.value });
+        key: "onFieldChange",
+        value: function onFieldChange(e) {
+            this.setState(_defineProperty({}, event.target.name, e.target.value));
             console.log(e.target.value);
         }
     }, {
@@ -62874,13 +62877,13 @@ var EditPage = function (_Component) {
             var postId = this.props.match.params.id;
             var history = this.props.history;
 
-            var Post = {
+            var blogPost = {
                 title: this.state.title,
                 image: this.state.image,
                 body: this.state.body
             };
-            console.log(Post);
-            axios.put("/api/blogs/" + postId + "/update", Post).then(function (res) {
+            console.log(blogPost);
+            axios.put("/api/blogs/" + postId + "/update", blogPost).then(function (res) {
                 console.log(res);
                 history.push("/admin");
             });
@@ -62917,7 +62920,7 @@ var EditPage = function (_Component) {
                             type: "text",
                             name: "title",
                             value: this.state.title,
-                            onChange: this.onTitleChange
+                            onChange: this.onFieldChange
                         })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62932,7 +62935,7 @@ var EditPage = function (_Component) {
                             type: "text",
                             name: "image",
                             value: this.state.image,
-                            onChange: this.onImageChange
+                            onChange: this.onFieldChange
                         })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62947,7 +62950,7 @@ var EditPage = function (_Component) {
                             type: "text",
                             name: "body",
                             value: this.state.body,
-                            onChange: this.onBodyChange
+                            onChange: this.onFieldChange
                         })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {

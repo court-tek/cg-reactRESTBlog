@@ -5,12 +5,14 @@ export default class EditDestroy extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          singlePost: []
+          singlePost: [],
+          blogId: this.props.match.params.id
         };
+        this.handleDelete = this.handleDelete.bind(this);
       }
 
       componentDidMount() {
-          const blogId = this.props.match.params.id;
+          const { blogId } = this.state;
           console.log(blogId);
           axios.get(`/api/blogs/${blogId}/show`).then(res => {
               console.log(res);
@@ -18,6 +20,16 @@ export default class EditDestroy extends Component {
               const singlePost = res.data;
               this.setState({ singlePost });
           });
+      }
+
+      handleDelete(e) {
+        const { history } = this.props;
+        const { blogId } = this.state;
+        e.preventDefault();
+        axios.delete(`/api/blogs/${blogId}/delete`).then(res => {
+          console.log(res);
+          console.log('I am the Syntax Error DELETE');
+        });
       }
     render() {
         const { match, location, history } = this.props;
@@ -42,7 +54,7 @@ export default class EditDestroy extends Component {
               </div>
             </section>
               <NavLink to={`/admin/${singlePost.id}/edit`} className="ui green basic button">Edit Post</NavLink>
-              <button className="ui red basic button">Delete Post</button>
+              <button onClick={this.handleDelete} className="ui red basic button">Delete Post</button>
             </div>
         );
     }

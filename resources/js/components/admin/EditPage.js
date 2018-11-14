@@ -10,9 +10,7 @@ export default class EditPage extends Component {
             body: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onTitleChange = this.onTitleChange.bind(this);
-        this.onImageChange = this.onImageChange.bind(this);
-        this.onBodyChange = this.onBodyChange.bind(this);
+        this.onFieldChange = this.onFieldChange.bind(this);
     }
 
     componentDidMount() {
@@ -30,32 +28,22 @@ export default class EditPage extends Component {
         });
     }
 
-    onTitleChange(e) {
-      this.setState({ title: e.target.value })
-      console.log(e.target.value);
-    }
-
-    onImageChange(e) {
-      this.setState({ image: e.target.value })
-      console.log(e.target.value);
-    }
-
-    onBodyChange(e) {
-      this.setState({ body: e.target.value })
-      console.log(e.target.value);
+    onFieldChange(e) {
+        this.setState({ [event.target.name]: e.target.value });
+        console.log(e.target.value);
     }
 
     handleSubmit(e) {
         e.preventDefault();
         let postId = this.props.match.params.id;
         const { history } = this.props;
-        const Post = {
+        const blogPost = {
           title: this.state.title,
           image: this.state.image,
           body: this.state.body
         }
-        console.log(Post);
-        axios.put(`/api/blogs/${postId}/update`, Post).then(res => {
+        console.log(blogPost);
+        axios.put(`/api/blogs/${postId}/update`, blogPost).then(res => {
           console.log(res);
           history.push("/admin");
         });
@@ -73,7 +61,7 @@ export default class EditPage extends Component {
                             type="text"
                             name="title"
                             value={this.state.title}
-                            onChange={this.onTitleChange}
+                            onChange={this.onFieldChange}
                         />
                     </div>
                     <div className="field">
@@ -82,7 +70,7 @@ export default class EditPage extends Component {
                             type="text"
                             name="image"
                             value={this.state.image}
-                            onChange={this.onImageChange}
+                            onChange={this.onFieldChange}
                         />
                     </div>
                     <div className="field">
@@ -91,7 +79,7 @@ export default class EditPage extends Component {
                             type="text"
                             name="body"
                             value={this.state.body}
-                            onChange={this.onBodyChange}
+                            onChange={this.onFieldChange}
                         />
                     </div>
                     <input

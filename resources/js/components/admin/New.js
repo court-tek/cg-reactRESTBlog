@@ -25,7 +25,7 @@ export default class New extends Component {
             image: this.state.image,
             body: this.state.body
         };
-        axios.post("api/blogs/store", post).then(res => {
+        axios.post("/api/blogs/store", post).then(res => {
             console.log(res);
             history.push("/admin");
         });
