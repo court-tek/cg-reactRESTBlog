@@ -81,9 +81,9 @@ class BlogsController extends Controller
     public function update(Request $request, $id)
     {
         $blog = Blog::find($id);
-        $blog->title = $request->get('title');
-        $blog->image = $request->get('image');
-        $blog->body = $request->get('body');
+        $blog->title = $request->title;
+        $blog->image = $request->image;
+        $blog->body = $request->body;
 
         $blog->save();
     }

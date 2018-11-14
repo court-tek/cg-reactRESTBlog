@@ -41,7 +41,7 @@ export default class EditDestroy extends Component {
               </div>
               </div>
             </section>
-              <NavLink to="/admin/:id/edit" className="ui green basic button">Edit Post</NavLink>
+              <NavLink to={`/admin/${singlePost.id}/edit`} className="ui green basic button">Edit Post</NavLink>
               <button className="ui red basic button">Delete Post</button>
             </div>
         );

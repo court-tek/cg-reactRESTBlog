@@ -15603,7 +15603,7 @@ var New = function (_Component) {
             };
             axios.post("api/blogs/store", post).then(function (res) {
                 console.log(res);
-                history.push("/");
+                history.push("/admin");
             });
         }
     }, {
@@ -62651,7 +62651,7 @@ var AllPost = function (_Component) {
                     { key: blog.id, className: "ui top attached" },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         "div",
-                        { className: "ui items" },
+                        { className: "ui centered items" },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
                             { to: "/admin/" + blog.id },
@@ -62775,7 +62775,7 @@ var EditDestroy = function (_Component) {
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_1_react_router_dom__["c" /* NavLink */],
-                    { to: "/admin/:id/edit", className: "ui green basic button" },
+                    { to: "/admin/" + singlePost.id + "/edit", className: "ui green basic button" },
                     "Edit Post"
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -62824,10 +62824,68 @@ var EditPage = function (_Component) {
             image: "",
             body: ""
         };
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        _this.onTitleChange = _this.onTitleChange.bind(_this);
+        _this.onImageChange = _this.onImageChange.bind(_this);
+        _this.onBodyChange = _this.onBodyChange.bind(_this);
         return _this;
     }
 
     _createClass(EditPage, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            var blogId = this.props.match.params.id;
+            console.log(blogId);
+            axios.get("/api/blogs/" + blogId + "/edit").then(function (res) {
+                console.log(res);
+                console.log(res.data);
+                var blogPost = res.data;
+                _this2.setState({
+                    title: blogPost.title,
+                    image: blogPost.image,
+                    body: blogPost.body
+                });
+            });
+        }
+    }, {
+        key: "onTitleChange",
+        value: function onTitleChange(e) {
+            this.setState({ title: e.target.value });
+            console.log(e.target.value);
+        }
+    }, {
+        key: "onImageChange",
+        value: function onImageChange(e) {
+            this.setState({ image: e.target.value });
+            console.log(e.target.value);
+        }
+    }, {
+        key: "onBodyChange",
+        value: function onBodyChange(e) {
+            this.setState({ body: e.target.value });
+            console.log(e.target.value);
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(e) {
+            e.preventDefault();
+            var postId = this.props.match.params.id;
+            var history = this.props.history;
+
+            var Post = {
+                title: this.state.title,
+                image: this.state.image,
+                body: this.state.body
+            };
+            console.log(Post);
+            axios.put("/api/blogs/" + postId + "/update", Post).then(function (res) {
+                console.log(res);
+                history.push("/admin");
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
             var _props = this.props,
@@ -62839,14 +62897,63 @@ var EditPage = function (_Component) {
                 "div",
                 { className: "ui main text container segment" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "h1",
-                    { className: "header" },
-                    "Update Post Here"
+                    "div",
+                    { className: "ui huge header" },
+                    "Edit: ",
+                    this.state.title
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "form",
-                    { className: "ui form" },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { type: "text", placeholder: "" })
+                    { className: "ui form", onSubmit: this.handleSubmit },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Title"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                            type: "text",
+                            name: "title",
+                            value: this.state.title,
+                            onChange: this.onTitleChange
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Image"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                            type: "text",
+                            name: "image",
+                            value: this.state.image,
+                            onChange: this.onImageChange
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "field" },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            "label",
+                            null,
+                            "Body"
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("textarea", {
+                            type: "text",
+                            name: "body",
+                            value: this.state.body,
+                            onChange: this.onBodyChange
+                        })
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+                        className: "ui violet big basic button",
+                        type: "submit"
+                    })
                 )
             );
         }

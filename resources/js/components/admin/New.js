@@ -27,7 +27,7 @@ export default class New extends Component {
         };
         axios.post("api/blogs/store", post).then(res => {
             console.log(res);
-            history.push("/");
+            history.push("/admin");
         });
     }
 

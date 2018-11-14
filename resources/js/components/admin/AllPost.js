@@ -21,7 +21,7 @@ export default class AllPost extends Component {
         return this.state.blogs.map(blog => {
           return (
             <div key={blog.id} className="ui top attached">
-              <div className="ui items">
+              <div className="ui centered items">
                 <NavLink to={`/admin/${blog.id}`}>{blog.title}</NavLink>
               </div>
             </div>
