@@ -62729,14 +62729,13 @@ var EditDestroy = function (_Component) {
     }
   }, {
     key: "handleDelete",
-    value: function handleDelete(e) {
+    value: function handleDelete() {
       var history = this.props.history;
       var blogId = this.state.blogId;
 
-      e.preventDefault();
       axios.delete("/api/blogs/" + blogId + "/delete").then(function (res) {
         console.log(res);
-        console.log('I am the Syntax Error DELETE');
+        history.push("/admin");
       });
     }
   }, {

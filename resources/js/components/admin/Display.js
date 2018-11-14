@@ -22,13 +22,12 @@ export default class EditDestroy extends Component {
           });
       }
 
-      handleDelete(e) {
+      handleDelete() {
         const { history } = this.props;
         const { blogId } = this.state;
-        e.preventDefault();
         axios.delete(`/api/blogs/${blogId}/delete`).then(res => {
           console.log(res);
-          console.log('I am the Syntax Error DELETE');
+          history.push("/admin");
         });
       }
     render() {
